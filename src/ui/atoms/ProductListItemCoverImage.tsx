@@ -1,6 +1,9 @@
-import { type ProductListItemCoverImageT } from "../types";
+type ProductListItemCoverImageProps = {
+	src: string;
+	alt: string;
+};
 
-export const ProductListItemCoverImage = ({ src, alt }: ProductListItemCoverImageT) => {
+export const ProductListItemCoverImage = ({ src, alt }: ProductListItemCoverImageProps) => {
 	return (
 		<div className="aspect-square overflow-hidden rounded-md border bg-slate-50 hover:bg-slate-100">
 			<img

@@ -1,8 +1,5 @@
-import products from "../../productsData.json";
-import { ProductList } from "@/ui/organisms/ProductList";
-
-const MainPage = () => {
-	return <ProductList products={products} />;
+const HomePage = () => {
+	return <div>Homepage</div>;
 };
 
-export default MainPage;
+export default HomePage;

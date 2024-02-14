@@ -3,10 +3,5 @@ export type ProductListItemT = {
 	category: string;
 	name: string;
 	price: number;
-	coverImage: ProductListItemCoverImageT;
-};
-
-export type ProductListItemCoverImageT = {
-	src: string;
-	alt: string;
+	coverImgUrl: string;
 };

@@ -5,7 +5,18 @@ import { Pagination } from "@/ui/molecules/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
-const ProductsPage = async ({ params }: { params: { pageNumber: string } }) => {
+export const generateStaticParams = () => {
+	const pageCount = 10;
+	const pageNumbers = [];
+
+	for (let i = 0; i < pageCount; i++) {
+		pageNumbers.push({ pageNumber: String(i + 1) });
+	}
+
+	return pageNumbers;
+};
+
+const ProductsPageNumber = async ({ params }: { params: { pageNumber: string } }) => {
 	const pageNumberAsNumber = Number(params.pageNumber);
 
 	if (Number.isNaN(pageNumberAsNumber) || pageNumberAsNumber < 1) return redirect("/products/1");
@@ -67,4 +78,4 @@ const ProductsPage = async ({ params }: { params: { pageNumber: string } }) => {
 	);
 };
 
-export default ProductsPage;
+export default ProductsPageNumber;

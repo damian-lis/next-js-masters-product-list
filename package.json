@@ -3,24 +3,23 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "npm run codegen && next dev",
-		"build": "npm run codegen && next build",
-		"codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
+		"dev": "next dev",
+		"build": "next build",
 		"start": "next start",
 		"lint": "next lint --fix --dir src"
 	},
 	"dependencies": {
-		"@apollo/client": "^3.9.4",
-		"@apollo/experimental-nextjs-app-support": "^0.5.0",
-		"@graphql-typed-document-node/core": "^3.2.0",
+		"@mdx-js/loader": "^3.0.1",
+		"@mdx-js/react": "^3.0.1",
+		"@next/mdx": "^14.1.0",
+		"@types/mdx": "^2.0.11",
 		"clsx": "^2.1.0",
-		"graphql": "^16.8.1",
 		"next": "14.1.0",
 		"react": "^18",
-		"react-dom": "^18"
+		"react-dom": "^18",
+		"remark-gfm": "^4.0.0"
 	},
 	"devDependencies": {
-		"@graphql-codegen/cli": "^5.0.2",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",

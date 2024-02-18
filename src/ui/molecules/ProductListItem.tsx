@@ -12,7 +12,7 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 		<li>
 			<Link href={`/product/${product.id}`}>
 				<article className="cursor-pointer rounded border p-2 transition-transform hover:scale-105">
-					<ProductListItemCoverImage src={product.coverImgUrl} alt={product.name} />
+					<ProductListItemCoverImage {...product.coverImage} />
 					<ProductListItemDescription product={product} />
 				</article>
 			</Link>

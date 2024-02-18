@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { type Metadata } from "next";
 import { getProductById, getProductList } from "@/api/products";
 import { ProductListItemCoverImage } from "@/ui/atoms/ProductListItemCoverImage";

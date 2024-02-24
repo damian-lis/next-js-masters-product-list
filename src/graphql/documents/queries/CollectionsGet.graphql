@@ -1,0 +1,10 @@
+query CollectionsGet($take: Int!, $skip: Int) {
+	collections(take: $take, skip: $skip) {
+		data {
+			name
+		}
+		meta {
+			total
+		}
+	}
+}

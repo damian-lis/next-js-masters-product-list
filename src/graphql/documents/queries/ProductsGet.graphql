@@ -1,0 +1,12 @@
+#import "./../fragments/ProductDetailsFragment.graphql"
+
+query ProductsGet($take: Int!, $skip: Int) {
+	products(take: $take, skip: $skip) {
+		data {
+			...ProductDetails
+		}
+		meta {
+			total
+		}
+	}
+}

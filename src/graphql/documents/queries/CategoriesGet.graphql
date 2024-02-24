@@ -1,0 +1,10 @@
+query CategoriesGet($take: Int!, $skip: Int) {
+	categories(take: $take, skip: $skip) {
+		data {
+			name
+		}
+		meta {
+			total
+		}
+	}
+}

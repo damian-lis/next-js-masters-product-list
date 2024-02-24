@@ -1,0 +1,9 @@
+#import "./../fragments/ProductDetailsFragment.graphql"
+
+query ProductsByCategoryGet($slug: String) {
+	category(slug: $slug) {
+		products {
+			...ProductDetails
+		}
+	}
+}

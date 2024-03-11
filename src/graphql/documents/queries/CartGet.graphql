@@ -1,0 +1,15 @@
+#import "./../fragments/ProductDetailsFragment.graphql"
+
+query CartGet($id: ID!) {
+	cart(id: $id) {
+		id
+		items {
+			product {
+				id
+				name
+				price
+			}
+			quantity
+		}
+	}
+}

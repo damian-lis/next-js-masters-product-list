@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { type Route } from "next";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { type ReactNode } from "react";
 
 export function ActiveLink<T extends string>({
@@ -12,25 +12,30 @@ export function ActiveLink<T extends string>({
 	className,
 	isDisabled,
 	activeClassName = "bg-blue-100 text-blue-500",
-	activePath = href,
+	activeWhen = href,
 	asSubLink,
+	...props
 }: {
 	href: Route<T> | URL;
 	activeClassName?: string;
 	isDisabled?: boolean;
 	asSubLink?: boolean;
-	activePath?: string | URL;
+	activeWhen?: string | URL;
 	children: ReactNode;
 	className?: string;
+	keepSearchParams?: boolean;
 }) {
 	const pathname = usePathname();
-	const pathnameParts = pathname.split("/"); // TODO: Change the name
-	const activePathParts = (activePath as string)?.split("/"); // TODO: Change the name
+	const searchParam = useSearchParams().toString();
+	const currentPath = `${pathname}${searchParam ? `?${searchParam}` : ""}`;
+	const currentPathParts = currentPath.split("/");
 
-	const isActive = activePathParts.every((part, index) => part === pathnameParts[index]);
+	const activePathParts = (activeWhen as string)?.split("/");
+	const isActive = activePathParts.every((activePart, i) => activePart === currentPathParts[i]);
 
 	return (
 		<Link
+			{...props}
 			href={href as Route} // INFO: I had to do that since it is flaky (sometimes it works without type casting but sometimes not - it breaks a deployment)
 			{...(isActive ? { "aria-current": true } : {})}
 			className={clsx(

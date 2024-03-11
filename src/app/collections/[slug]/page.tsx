@@ -1,12 +1,12 @@
 import React from "react";
-import { getCollectionBySlug } from "@/api/getCollectionBySlug";
+import { getCollectionBySlug } from "@/graphql-services/getCollectionBySlug";
 import { ProductList } from "@/ui/organisms/ProductList";
-import { getCollections } from "@/api/getCollections";
+import { getCollections } from "@/graphql-services/getCollections";
 import { Heading } from "@/ui/atoms/Heading";
 
 export const generateStaticParams = async () => {
 	const { collections } = await getCollections();
-	return collections.map((collection) => ({ collectionName: collection.name }));
+	return collections.map((collection) => ({ slug: collection.name }));
 };
 
 const CollectionPage = async ({ params }: { params: { slug: string } }) => {

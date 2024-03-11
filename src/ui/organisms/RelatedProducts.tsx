@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading } from "../atoms/Heading";
 import { ProductList } from "./ProductList";
-import { getProductsByCategorySlug } from "@/api/getProductsByCategorySlug";
+import { getProductsByCategorySlug } from "@/graphql-services/getProductsByCategorySlug";
 
 export const RelatedProducts = async ({
 	categorySlug,

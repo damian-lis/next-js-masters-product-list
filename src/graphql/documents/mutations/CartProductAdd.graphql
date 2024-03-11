@@ -1,0 +1,5 @@
+mutation cartProductAdd($id: ID!, $input: MutationCartAddItemInput!) {
+	cartAddItem(id: $id, input: $input) {
+		id
+	}
+}

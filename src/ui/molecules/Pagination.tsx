@@ -7,6 +7,7 @@ interface PaginationProps<T extends string> {
 	resourcesTotal: number;
 	resourcesPerPage: number;
 	baseUrl: Route<T> | URL;
+	searchParams?: Record<string, string>;
 }
 
 export function Pagination<T extends string>({
@@ -14,23 +15,30 @@ export function Pagination<T extends string>({
 	resourcesTotal,
 	resourcesPerPage,
 	baseUrl,
+	searchParams = {},
 }: PaginationProps<T>) {
 	const totalPages = Math.ceil(resourcesTotal / resourcesPerPage);
 
-	const getPageUrl = (pageNumber: number) => `${baseUrl as string}/${pageNumber}` as Route;
+	const searchParamsString = Object.entries(searchParams)
+		.map(([name, value]) => `${name}=${value}`)
+		.join("&");
+
+	const getUrl = (pageNumber: number) =>
+		`${baseUrl as string}/${pageNumber}${searchParamsString ? `?${searchParamsString}` : ""}` as Route;
+
 	const pageNumbersToShow = getPageNumbersToShow(currentPage, totalPages);
 
 	return (
 		<section aria-label="pagination" className="mt-8 text-center">
-			<ActiveLink isDisabled={currentPage === 1} href={getPageUrl(currentPage - 1)}>
+			<ActiveLink isDisabled={currentPage === 1} href={getUrl(currentPage - 1)}>
 				Prev
 			</ActiveLink>
 			{pageNumbersToShow.map((pageNumber) => (
-				<ActiveLink href={getPageUrl(pageNumber)} key={pageNumber}>
+				<ActiveLink href={getUrl(pageNumber)} key={pageNumber}>
 					{pageNumber}
 				</ActiveLink>
 			))}
-			<ActiveLink isDisabled={currentPage === totalPages} href={getPageUrl(currentPage + 1)}>
+			<ActiveLink isDisabled={currentPage === totalPages} href={getUrl(currentPage + 1)}>
 				Next
 			</ActiveLink>
 		</section>

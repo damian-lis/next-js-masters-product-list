@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter, useSearchParams } from "next/navigation";
-import { StyledInput } from "../atoms/Input";
+import { StyledInput } from "../atoms/StyledInput";
 
 export const SearchInput = () => {
 	const searchParams = useSearchParams();

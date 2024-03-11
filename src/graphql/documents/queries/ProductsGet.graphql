@@ -1,7 +1,7 @@
 #import "./../fragments/ProductDetailsFragment.graphql"
 
-query ProductsGet($take: Int!, $skip: Int) {
-	products(take: $take, skip: $skip) {
+query ProductsGet($take: Int!, $skip: Int, $orderBy: ProductSortBy) {
+	products(take: $take, skip: $skip, orderBy: $orderBy) {
 		data {
 			...ProductDetails
 		}

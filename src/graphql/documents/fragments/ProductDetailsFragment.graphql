@@ -1,3 +1,5 @@
+#import "./fragments/ProductReviewFragment.graphql"
+
 fragment ProductDetails on Product {
 	id
 	name
@@ -9,4 +11,8 @@ fragment ProductDetails on Product {
 	images {
 		url
 	}
+	reviews {
+		...ProductReview
+	}
+	rating
 }

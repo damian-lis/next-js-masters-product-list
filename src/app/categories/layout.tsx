@@ -1,4 +1,4 @@
-import { getCategories } from "@/api/getCategories";
+import { getCategories } from "@/graphql-services/getCategories";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { formatToSlug } from "@/utils/formatToSlug";
 
@@ -13,7 +13,7 @@ const CategoriesLayout = async ({ children }: { children: React.ReactNode }) => 
 						<li key={name}>
 							<ActiveLink
 								asSubLink
-								activePath={`/categories/${formatToSlug(name)}`}
+								activeWhen={`/categories/${formatToSlug(name)}`}
 								href={`/categories/${formatToSlug(name)}/1`}
 							>
 								{name}

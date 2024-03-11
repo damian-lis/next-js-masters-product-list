@@ -2,14 +2,8 @@ import React from "react";
 import { type Route } from "next";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Heading } from "@/ui/atoms/Heading";
-import { getCategories } from "@/api/getCategories";
-import { getCategoryBySlug } from "@/api/getCategoryBySlug";
+import { getCategoryBySlug } from "@/graphql-services/getCategoryBySlug";
 import { Pagination } from "@/ui/molecules/Pagination";
-
-export const generateStaticParams = async () => {
-	const { categories } = await getCategories();
-	return categories.map((category) => ({ categoryName: category.name }));
-};
 
 const CategoryPage = async ({ params }: { params: { slug: string; page: string } }) => {
 	const category = await getCategoryBySlug(params.slug);

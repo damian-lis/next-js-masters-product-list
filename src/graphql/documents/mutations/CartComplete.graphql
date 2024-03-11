@@ -1,0 +1,10 @@
+mutation CartComplete($cartId: ID!, $userEmail: String!) {
+	cartComplete(cartId: $cartId, userEmail: $userEmail) {
+		id
+		createdAt
+		lines
+		status
+		totalAmount
+		updatedAt
+	}
+}

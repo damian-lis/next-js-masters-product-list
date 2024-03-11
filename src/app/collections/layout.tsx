@@ -1,4 +1,4 @@
-import { getCollections } from "@/api/getCollections";
+import { getCollections } from "@/graphql-services/getCollections";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { formatToSlug } from "@/utils/formatToSlug";
 

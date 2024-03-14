@@ -53,6 +53,7 @@ export const handlePaymentAction = async () => {
 	if (!cart) return;
 
 	const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+	const PUBLIC_URL = process.env.PUBLIC_URL
 
 	if (!STRIPE_SECRET_KEY) {
 		throw new Error("Missing Stripe secret key");
@@ -79,8 +80,8 @@ export const handlePaymentAction = async () => {
 			quantity: item.quantity,
 		})),
 		mode: "payment",
-		success_url: "http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}",
-		cancel_url: "http://localhost:3000/cart/cancel",
+		success_url: `${PUBLIC_URL}/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
+		cancel_url: `${PUBLIC_URL}/cart/cancel`,
 	});
 
 	if (!checkoutSession.url) throw new Error("Something went wrong");

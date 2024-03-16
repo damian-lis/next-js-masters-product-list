@@ -5,6 +5,10 @@ import { Heading } from "@/ui/atoms/Heading";
 import { getCategoryBySlug } from "@/graphql-services/getCategoryBySlug";
 import { Pagination } from "@/ui/molecules/Pagination";
 
+export const metadata = {
+	title: "Categories",
+};
+
 const CategoryPage = async ({ params }: { params: { slug: string; page: string } }) => {
 	const category = await getCategoryBySlug(params.slug);
 
@@ -17,7 +21,8 @@ const CategoryPage = async ({ params }: { params: { slug: string; page: string }
 
 	return (
 		<section>
-			<Heading>Category name: {category?.name}</Heading>
+			<Heading>Categories</Heading>
+			<Heading asSubHeading>Category name: {category?.name}</Heading>
 			<ProductList products={selectedProducts} />
 			<Pagination
 				baseUrl={`/categories/${params.slug}` as Route}

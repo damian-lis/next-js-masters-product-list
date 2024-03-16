@@ -23,7 +23,7 @@ export const generateStaticParams = async () => {
 		});
 	}
 
-	return pageNumbersWithSorting.filter((v) => ({ ...v, sortBy: v.sortBy.toUpperCase() }));
+	return pageNumbersWithSorting.filter((v) => ({ ...v, sortBy: v.sortBy?.toUpperCase() }));
 };
 
 const ProductsPage = async ({
@@ -39,7 +39,7 @@ const ProductsPage = async ({
 	const { products, productsTotal } = await getProducts({
 		currentPage: currentPageAsNumber,
 		count: productsPerPage,
-		orderBy: searchParams.sortBy.toUpperCase() as ProductSortBy,
+		orderBy: searchParams.sortBy?.toUpperCase() as ProductSortBy,
 	});
 
 	return (

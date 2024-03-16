@@ -1,7 +1,7 @@
 #import "./../fragments/ProductDetailsFragment.graphql"
 
-query ProductGet($id: ID) {
-	product(id: $id) {
+query ProductGet($id: ID, $slug: String) {
+	product(id: $id, slug: $slug) {
 		...ProductDetails
 	}
 }

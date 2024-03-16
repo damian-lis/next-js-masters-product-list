@@ -1,6 +1,6 @@
 #import "./../fragments/ProductDetailsFragment.graphql"
 
-query CollectionAndCategoryhGet($slug: String) {
+query CollectionCategoryProductsSearch($slug: String) {
 	collection(slug: $slug) {
 		name
 		products {
@@ -10,6 +10,11 @@ query CollectionAndCategoryhGet($slug: String) {
 	category(slug: $slug) {
 		name
 		products {
+			...ProductDetails
+		}
+	}
+	products(search: $slug) {
+		data {
 			...ProductDetails
 		}
 	}

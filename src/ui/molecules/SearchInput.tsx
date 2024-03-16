@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter, useSearchParams } from "next/navigation";
 import { StyledInput } from "../atoms/StyledInput";
@@ -11,28 +11,17 @@ export const SearchInput = () => {
 
 	const [searchTerm, setSearchTerm] = useState(searchParams.get("query") || "");
 
-	const createQueryString = useCallback(
-		(name: string, value: string) => {
-			const params = new URLSearchParams(searchParams.toString());
-			params.set(name, value);
-
-			return params.toString();
-		},
-		[searchParams],
-	);
-
-	const debounced = useDebouncedCallback((value: string) => {
-		const queryString = createQueryString("query", value);
-		router.push(`/search?${queryString}`);
+	const debounced = useDebouncedCallback(() => {
+		router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
 	}, 500);
 
 	return (
 		<StyledInput
-			type="text"
+			type="search"
 			value={searchTerm}
 			onChange={(e) => {
 				setSearchTerm(e.target.value);
-				debounced(e.target.value);
+				debounced();
 			}}
 			placeholder={"Search categories or collections..."}
 		/>

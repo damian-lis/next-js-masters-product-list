@@ -11,7 +11,7 @@ export function ActiveLink<T extends string>({
 	children,
 	className,
 	isDisabled,
-	activeClassName = "bg-blue-100 text-blue-500",
+	activeClassName = "bg-blue-100 text-blue-500 border-solid border-2 border-sky-500",
 	activeWhen = href,
 	asSubLink,
 	...props

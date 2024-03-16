@@ -44,19 +44,19 @@ export default function RootLayout({
 									All
 								</ActiveLink>
 							</li>
+							<ListItemOrdersLink />
 							<li>
-								<ActiveLink activeWhen={"/categories"} href="/categories/t-shirts/1">
-									Categories
-								</ActiveLink>
+								<CartIcon />
 							</li>
 							<li>
 								<ActiveLink activeWhen={"/collections"} href="/collections/summer-vibes">
 									Collections
 								</ActiveLink>
 							</li>
-							<ListItemOrdersLink />
 							<li>
-								<CartIcon />
+								<ActiveLink activeWhen={"/categories"} href="/categories/t-shirts/1">
+									Categories
+								</ActiveLink>
 							</li>
 						</ul>
 						<div className="text-s ml-4 cursor-pointer rounded-md border border-blue-200 px-4 py-2 font-semibold text-gray-700 transition-colors duration-200 hover:bg-blue-100">

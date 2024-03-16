@@ -3,11 +3,9 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { cookies } from "next/headers";
-import { ProductListItemCoverImage } from "@/ui/atoms/ProductListItemCoverImage";
 import { RelatedProducts } from "@/ui/organisms/RelatedProducts";
 import { getProductById } from "@/graphql-services/getProductById";
 import { getProducts } from "@/graphql-services/getProducts";
-import { Heading } from "@/ui/atoms/Heading";
 import { formatToSlug } from "@/utils/formatToSlug";
 import { findOrCreateCart } from "@/graphql-services/findOrCreateCart";
 import { addProductToCart } from "@/graphql-services/addProductToCart";
@@ -16,6 +14,7 @@ import { ProductReview } from "@/components/ProductReview";
 import { StyledFormSubmitButton } from "@/ui/atoms/StyledFormSubmitButton";
 import { getCartById } from "@/graphql-services/getCartById";
 import { changeProductQuantityAction } from "@/actions";
+import { ProductDetails } from "@/ui/molecules/ProductDetails";
 
 export const generateMetadata = async ({
 	params,
@@ -76,11 +75,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
 	return (
 		<>
 			<article className="m-auto mb-10 max-w-xs">
-				<Heading>{product.name}</Heading>
-				{!!product.images[0]?.url && (
-					<ProductListItemCoverImage src={product.images[0]?.url} alt={product.name} />
-				)}
-				<p className="mt-3">{product.description}</p>
+				<ProductDetails product={product} />
 				<form action={addToCartAction}>
 					<StyledFormSubmitButton data-testid="add-to-cart-button">
 						Add to cart

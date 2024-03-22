@@ -20,9 +20,8 @@ const CategoryPage = async ({ params }: { params: { slug: string; page: string }
 	const selectedProducts = category?.products.slice(skipProductsCount, takeProductsCount);
 
 	return (
-		<section>
-			<Heading>Categories</Heading>
-			<Heading asSubHeading>Category name: {category?.name}</Heading>
+		<section className="mt-16">
+			<Heading asSubHeading>Choosen category: {category?.name}</Heading>
 			<ProductList products={selectedProducts} />
 			<Pagination
 				baseUrl={`/categories/${params.slug}` as Route}

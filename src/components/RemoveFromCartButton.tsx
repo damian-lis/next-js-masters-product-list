@@ -16,6 +16,7 @@ export const RemoveFromCartButton = ({
 
 	return (
 		<button
+			className="font-bold text-red-500 transition-colors hover:text-red-300"
 			disabled={isPending}
 			onClick={() => {
 				startTransition(async () => {

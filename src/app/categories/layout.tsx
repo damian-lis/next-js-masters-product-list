@@ -1,5 +1,6 @@
 import { getCategories } from "@/graphql-services/getCategories";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { Heading } from "@/ui/atoms/Heading";
 import { formatToSlug } from "@/utils/formatToSlug";
 
 const CategoriesLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -7,8 +8,9 @@ const CategoriesLayout = async ({ children }: { children: React.ReactNode }) => 
 
 	return (
 		<section>
+			<Heading>Categories</Heading>
 			<nav>
-				<ul className="mt-2 flex justify-center space-x-4">
+				<ul className="mt-2 flex flex-wrap justify-center gap-2">
 					{categories.map(({ name }) => (
 						<li key={name}>
 							<ActiveLink

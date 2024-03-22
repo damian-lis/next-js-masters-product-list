@@ -39,7 +39,7 @@ export function ActiveLink<T extends string>({
 			href={href as Route} // INFO: I had to do that since it is flaky (sometimes it works without type casting but sometimes not - it breaks a deployment)
 			{...(isActive ? { "aria-current": true } : {})}
 			className={clsx(
-				"text-s rounded-md px-4 py-2 font-semibold text-gray-700 transition-colors duration-200 hover:bg-blue-50",
+				"text-s rounded-md px-2 py-1.5 font-semibold text-gray-700 transition-colors duration-200 hover:bg-blue-50",
 				className,
 				{
 					[activeClassName]: isActive,

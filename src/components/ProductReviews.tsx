@@ -8,7 +8,7 @@ import { createReviewAction } from "@/actions";
 import { StyledButton } from "@/ui/atoms/StyledButton";
 import { Heading } from "@/ui/atoms/Heading";
 
-export const ProductReview = ({
+export const ProductReviews = ({
 	productId,
 	reviews,
 }: {
@@ -24,9 +24,9 @@ export const ProductReview = ({
 	);
 
 	return (
-		<section>
+		<section className="mb-16">
 			<Heading asSubHeading>Reviews</Heading>
-			<div>
+			<div className="mb-16">
 				{optimisticReviews.map((review) => (
 					<React.Fragment key={review.author + review.title + review.email}>
 						<br />
@@ -51,6 +51,7 @@ export const ProductReview = ({
 					</React.Fragment>
 				))}
 			</div>
+			<Heading asSubHeading>Leave a review!</Heading>
 			<form
 				data-testid="add-review-form"
 				ref={formRef}
@@ -79,7 +80,9 @@ export const ProductReview = ({
 				/>
 				<StyledInput required className="mt-4" name="name" placeholder="Name" />
 				<StyledInput required type="email" className="mt-4" name="email" placeholder="Email" />
-				<StyledButton type="submit">Add a review</StyledButton>
+				<div className="text-center">
+					<StyledButton type="submit">Add a review</StyledButton>
+				</div>
 			</form>
 		</section>
 	);

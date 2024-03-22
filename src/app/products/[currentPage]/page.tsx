@@ -4,6 +4,7 @@ import { getProducts } from "@/graphql-services/getProducts";
 import { type ProductSortBy } from "@/graphql/generated/graphql";
 
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { Heading } from "@/ui/atoms/Heading";
 
 const productsPerPage = 3;
 
@@ -44,9 +45,11 @@ const ProductsPage = async ({
 
 	return (
 		<section>
+			<Heading asSubHeading>Filter by</Heading>
 			<ul className="mb-8 mt-2 flex justify-center space-x-4 ">
 				<li>
 					<ActiveLink
+						asSubLink
 						data-testid="sort-by-price"
 						href={`/products/${params.currentPage}?sortBy=price`}
 					>
@@ -55,6 +58,7 @@ const ProductsPage = async ({
 				</li>
 				<li>
 					<ActiveLink
+						asSubLink
 						data-testid="sort-by-rating"
 						href={`/products/${params.currentPage}?sortBy=rating`}
 					>

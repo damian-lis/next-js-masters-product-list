@@ -1,5 +1,6 @@
 import { getCollections } from "@/graphql-services/getCollections";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { Heading } from "@/ui/atoms/Heading";
 import { formatToSlug } from "@/utils/formatToSlug";
 
 const CollectionsLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -7,8 +8,9 @@ const CollectionsLayout = async ({ children }: { children: React.ReactNode }) =>
 
 	return (
 		<section>
+			<Heading>Collections</Heading>
 			<nav>
-				<ul className="mt-2 flex justify-center space-x-4">
+				<ul className="mt-2 flex flex-wrap justify-center gap-2">
 					{collections.map(({ name }) => (
 						<li key={name}>
 							<ActiveLink asSubLink href={`/collections/${formatToSlug(name)}`}>

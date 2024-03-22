@@ -2,17 +2,15 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
-import {
-	ClerkProvider,
-	SignInButton,
-	SignedIn,
-	SignedOut,
-	UserButton,
-	currentUser,
-} from "@clerk/nextjs";
+import { ClerkProvider} from "@clerk/nextjs";
+import clsx from "clsx";
+
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
-import { SearchInput } from "@/ui/molecules/SearchInput";
+import { Search } from "@/ui/molecules/Search";
 import { CartIcon } from "@/components/CartIcon";
+import { SignedInAndOutButton } from "@/components/SignedInAndOutButton";
+import { MobileNav } from "@/components/MobileNav";
+import { ListItemOrdersLink } from "@/components/ListItemOrdersLink";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
@@ -28,63 +26,51 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="en">
-				<body className={inter.className}>
-					<section className="mx-auto mb-5 mt-5 max-w-screen-sm ">
-						<Suspense>
-							<SearchInput />
-						</Suspense>
-					</section>
-					<nav className="flex w-full justify-center">
-						<ul className="mt-2 flex justify-center space-x-4">
-							<li>
-								<ActiveLink href="/">Home</ActiveLink>
-							</li>
-							<li>
-								<ActiveLink activeWhen={"/products"} href="/products/1?sortBy=price">
-									All
-								</ActiveLink>
-							</li>
-							<ListItemOrdersLink />
-							<li>
+				<body className={clsx(inter.className)}>
+					<nav className="bg-slate-100">
+						<div className="mx-auto flex max-w-7xl justify-between p-4">
+							<ul className="mr-10 mt-2 hidden justify-center space-x-4 lg:flex">
+								<li>
+									<ActiveLink href="/">Home</ActiveLink>
+								</li>
+								<li>
+									<ActiveLink activeWhen={"/products"} href="/products/1?sortBy=price">
+										Products
+									</ActiveLink>
+								</li>
+								<ListItemOrdersLink />
+								<li>
+									<ActiveLink activeWhen={"/collections"} href="/collections/summer-vibes">
+										Collections
+									</ActiveLink>
+								</li>
+								<li>
+									<ActiveLink activeWhen={"/categories"} href="/categories/t-shirts/1">
+										Categories
+									</ActiveLink>
+								</li>
+							</ul>
+
+							<div className="flex w-full items-center">
+								<Suspense>
+									<Search />
+								</Suspense>
 								<CartIcon />
-							</li>
-							<li>
-								<ActiveLink activeWhen={"/collections"} href="/collections/summer-vibes">
-									Collections
-								</ActiveLink>
-							</li>
-							<li>
-								<ActiveLink activeWhen={"/categories"} href="/categories/t-shirts/1">
-									Categories
-								</ActiveLink>
-							</li>
-						</ul>
-						<div className="text-s ml-4 cursor-pointer rounded-md border border-blue-200 px-4 py-2 font-semibold text-gray-700 transition-colors duration-200 hover:bg-blue-100">
-							<SignedIn>
-								<UserButton />
-							</SignedIn>
-							<SignedOut>
-								<SignInButton />
-							</SignedOut>
+								<MobileNav>
+									<ListItemOrdersLink />
+								</MobileNav>
+								<SignedInAndOutButton />
+							</div>
 						</div>
 					</nav>
-					<section className="mx-auto max-w-md p-4 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
+					<section className="mx-auto h-full max-w-md p-4 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
 						{children}
 					</section>
+					<footer className="mt-4 border-t-2 bg-slate-100 p-4 text-center">
+						© Damian Lis 2024
+					</footer>
 				</body>
 			</html>
 		</ClerkProvider>
 	);
 }
-
-const ListItemOrdersLink = async () => {
-	const user = await currentUser();
-
-	if (!user) return;
-
-	return (
-		<li>
-			<ActiveLink href="/orders">Orders</ActiveLink>
-		</li>
-	);
-};

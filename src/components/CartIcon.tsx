@@ -1,4 +1,5 @@
 import React from "react";
+import { ShoppingCart } from "lucide-react";
 import { getCartIdFromCookies } from "@/utils/getCartIdFromCookies";
 import { getCartById } from "@/graphql-services/getCartById";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
@@ -13,5 +14,10 @@ export const CartIcon = async () => {
 			return acc + item.quantity;
 		}, 0) || 0;
 
-	return <ActiveLink href="/cart">Cart ({quantityTotal})</ActiveLink>;
+	return (
+		<ActiveLink href="/cart" className={"relative ml-4 flex items-center gap-1 text-blue-500"}>
+			<ShoppingCart />
+			{!!quantityTotal && <span>{quantityTotal}</span>}
+		</ActiveLink>
+	);
 };

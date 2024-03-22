@@ -10,7 +10,7 @@ import { formatToSlug } from "@/utils/formatToSlug";
 import { findOrCreateCart } from "@/graphql-services/findOrCreateCart";
 import { addProductToCart } from "@/graphql-services/addProductToCart";
 import { getCartIdFromCookies } from "@/utils/getCartIdFromCookies";
-import { ProductReview } from "@/components/ProductReview";
+import { ProductReviews } from "@/components/ProductReviews";
 import { StyledFormSubmitButton } from "@/ui/atoms/StyledFormSubmitButton";
 import { getCartById } from "@/graphql-services/getCartById";
 import { changeProductQuantityAction } from "@/actions";
@@ -76,20 +76,20 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
 		<>
 			<article className="m-auto mb-10 max-w-xs">
 				<ProductDetails product={product} />
-				<form action={addToCartAction}>
+				<form className="text-center" action={addToCartAction}>
 					<StyledFormSubmitButton data-testid="add-to-cart-button">
 						Add to cart
 					</StyledFormSubmitButton>
 				</form>
 			</article>
-			<section>
+			<section className="mb-16">
 				<Suspense>
 					{!!categorySlug && (
 						<RelatedProducts productIdToSkip={product.id} categorySlug={categorySlug} />
 					)}
 				</Suspense>
 			</section>
-			<ProductReview productId={params.productId} reviews={product.reviews} />
+			<ProductReviews productId={params.productId} reviews={product.reviews.slice(-5)} />
 		</>
 	);
 };

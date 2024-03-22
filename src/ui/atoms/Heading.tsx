@@ -8,7 +8,7 @@ export const Heading = ({
 	children: React.ReactNode;
 	asSubHeading?: boolean;
 }) => {
-	const commonClassName = "mb-4 mt-12 text-center font-bold";
+	const commonClassName = "mb-4 mt-4 text-center font-bold";
 
 	if (asSubHeading) return <h2 className={clsx(commonClassName, "text-l")}>{children}</h2>;
 

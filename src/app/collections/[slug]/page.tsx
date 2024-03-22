@@ -17,9 +17,8 @@ const CollectionPage = async ({ params }: { params: { slug: string } }) => {
 	const collection = await getCollectionBySlug(params.slug);
 
 	return (
-		<section>
-			<Heading>Collections</Heading>
-			<Heading>{collection?.name}</Heading>
+		<section className="mt-16">
+			<Heading asSubHeading>Choosen collection: {collection?.name}</Heading>
 			<ProductList products={collection?.products} />
 		</section>
 	);

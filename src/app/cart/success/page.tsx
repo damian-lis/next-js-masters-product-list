@@ -31,50 +31,67 @@ const CartSuccessPage = async ({ searchParams }: { searchParams: { sessionId: st
 	const order = cartComplete.cartComplete;
 
 	return (
-		<section>
-			<h2>Order ID: {order.id}</h2>
-			<h2>Customer Email: {customerEmail}</h2>
-			<h2>Payment Status: {session.payment_status}</h2>
-			<h2>Order Status: {order.status}</h2>
-			<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-				<table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-					<thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-						<tr>
-							<th scope="col" className="px-6 py-3">
-								Product Id
-							</th>
-							<th scope="col" className="px-6 py-3">
-								Product Name
-							</th>
-							<th scope="col" className="px-6 py-3">
-								Quantity
-							</th>
-							<th scope="col" className="px-6 py-3">
-								Price
-							</th>
+		<section className="mx-auto mt-5 w-full max-w-3xl overflow-x-auto ">
+			<table className="w-full text-left text-sm">
+				<thead className="border text-xs uppercase dark:border-gray-700 ">
+					<tr>
+						<th scope="col" className="min-w-32 px-4 py-3">
+							Order ID
+						</th>
+						<th scope="col" className="min-w-40 px-4 py-3">
+							Customer Email
+						</th>
+						<th scope="col" className="px-4 py-3">
+							Payment Status
+						</th>
+						<th scope="col" className="px-4 py-3">
+							Order Status
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr className="border dark:border-gray-700 ">
+						<td className="px-4 py-4">{order.id}</td>
+						<td className="px-4 py-4">{customerEmail}</td>
+						<td className="px-4 py-4">{session.payment_status}</td>
+						<td className="px-4 py-4">{order.status}</td>
+					</tr>
+				</tbody>
+			</table>
+			<table className="mt-4 w-full text-left text-sm">
+				<thead className="border text-xs uppercase dark:border-gray-700 ">
+					<tr>
+						<th scope="col" className="min-w-32 px-4 py-3">
+							Product ID
+						</th>
+						<th scope="col" className="min-w-40 px-4 py-3">
+							Product Name
+						</th>
+						<th scope="col" className="px-4 py-3">
+							Quantity
+						</th>
+						<th scope="col" className="px-4 py-3">
+							Price
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{(order.lines as OrderLine[]).map((line) => (
+						<tr key={line.productId} className="border dark:border-gray-700">
+							<td className="px-4 py-4">{line.productId}</td>
+							<td className="px-4 py-4">{line.productName}</td>
+							<td className="px-4 py-4">{line.productQuantity}</td>
+							<td className="px-4 py-4">{formatMoney(line.productPrice)}</td>
 						</tr>
-					</thead>
-					<tbody>
-						{(order.lines as OrderLine[]).map((line) => (
-							<tr
-								key={line.productId}
-								className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-							>
-								<td className="px-6 py-4">{line.productId}</td>
-								<td className="px-6 py-4">{line.productName}</td>
-								<td className="px-6 py-4">{line.productQuantity}</td>
-								<td className="px-6 py-4">${formatMoney(line.productPrice)}</td>
-							</tr>
-						))}
-						<tr className="bg-gray-50 dark:bg-gray-700">
-							<td className="px-6 py-4" />
-							<td className="px-6 py-4" />
-							<td className="px-6 py-4 text-right font-bold">Total Amount</td>
-							<td className="px-6 py-4 font-bold">${formatMoney(order.totalAmount)}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+					))}
+					<tr className="border dark:border-gray-700 ">
+						<td className="px-4 py-4" />
+						<td className="px-4 py-4" />
+						<td className="px-4 py-4 text-right font-bold">Total Amount:</td>
+						<td className="px-4 py-4">{formatMoney(order.totalAmount)}</td>
+					</tr>
+				</tbody>
+			</table>
 		</section>
 	);
 };

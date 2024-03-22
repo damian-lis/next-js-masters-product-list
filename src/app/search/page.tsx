@@ -17,19 +17,25 @@ const page = async ({ searchParams: { query } }: { searchParams: { query: string
 		<>
 			<Heading>Results:</Heading>
 			<section className="text-center">
-				{categoryName || categoryName || products?.length ? (
+				{categoryName || collectionName || !!products?.length ? (
 					<>
 						{categoryName && (
-							<ActiveLink href={`/categories/${formatToSlug(categoryName)}/1`}>
-								Category: {categoryName}
+							<ActiveLink
+								className="text-blue-600"
+								href={`/categories/${formatToSlug(categoryName)}/1`}
+							>
+								Go to category: {categoryName}
 							</ActiveLink>
 						)}
 						{collectionName && (
-							<ActiveLink href={`/collections/${formatToSlug(collectionName)}`}>
-								Collection: {collectionName}
+							<ActiveLink
+								className="text-blue-600"
+								href={`/collections/${formatToSlug(collectionName)}`}
+							>
+								Go to collection: {collectionName}
 							</ActiveLink>
 						)}
-						{products.length && <ProductList products={products} />}
+						{!!products.length && <ProductList products={products} />}
 					</>
 				) : (
 					"No Results"
